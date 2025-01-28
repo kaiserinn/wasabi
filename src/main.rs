@@ -1,7 +1,7 @@
 use std::net::TcpListener;
 
 use clap::Parser;
-use web_server_rs::config::Config;
+use wasabi::config::Config;
 
 fn main() {
     let config = Config::parse();
