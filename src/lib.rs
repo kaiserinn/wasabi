@@ -1,6 +1,9 @@
 use std::net::{TcpListener, TcpStream, ToSocketAddrs};
 
+use request::Request;
+
 pub mod config;
+pub mod request;
 
 pub fn listen<T: ToSocketAddrs>(socket_addr: T) {
     let listener = TcpListener::bind(socket_addr).unwrap();
@@ -13,5 +16,7 @@ pub fn listen<T: ToSocketAddrs>(socket_addr: T) {
 }
 
 fn handle_connection(stream: TcpStream) {
-    println!("Connection established.");
+    let request = Request::parse(stream);
+
+    println!("{:#?}", request);
 }
